@@ -11,6 +11,7 @@ import ItemDetails from "../item-details";
 import Row from "../row";
 import SwapiService from "../../services/swapi-service";
 import {Record} from "../item-details/item-details";
+import ItemList from "../item-list";
 
 export default class App extends Component {
 
@@ -35,6 +36,8 @@ export default class App extends Component {
       null;
 
     const {getPerson,
+        getAllPeople,
+        getAllPlanets,
         getStarship,
         getStarshipImage,
         getPersonImage,
@@ -66,10 +69,22 @@ export default class App extends Component {
         <div className="stardb-app">
           <Header />
 
-          <Row
-            left={personDetails}
-            right={starshipDetails}
-          />
+            <ItemList
+                onItemSelected={() => {}}
+                getData={getAllPeople}>
+                { ({name}) => <span>{name}</span>}
+            </ItemList>
+
+            <ItemList
+                onItemSelected={() => {}}
+                getData={getAllPlanets}>
+                { ({name}) => <span>{name}</span>}
+            </ItemList>
+
+          {/*<Row*/}
+          {/*  left={personDetails}*/}
+          {/*  right={starshipDetails}*/}
+          {/*/>*/}
           {/*{ planet }*/}
 
           {/*<div className="row mb2 button-row">*/}
