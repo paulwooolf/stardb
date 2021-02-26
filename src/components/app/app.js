@@ -10,6 +10,7 @@ import './app.css';
 import ItemDetails from "../item-details";
 import Row from "../row";
 import SwapiService from "../../services/swapi-service";
+import {Record} from "../item-details/item-details";
 
 export default class App extends Component {
 
@@ -43,14 +44,21 @@ export default class App extends Component {
         <ItemDetails
             getData={getPerson}
             getImageUrl={getPersonImage}
-            itemId={11} />
+            itemId={11} >
+            <Record field="gender" label="Gender" />
+            <Record field="eyeColor" label="Eye Color" />
+        </ItemDetails>
     )
 
       const starshipDetails = (
           <ItemDetails
               getData={getStarship}
               getImageUrl={getStarshipImage}
-              itemId={5} />
+              itemId={5} >
+              <Record field="model" label="Model" />
+              <Record field="length" label="Length" />
+              <Record field="costInCredits" label="Cost" />
+          </ItemDetails>
       )
 
     return (
