@@ -78,15 +78,15 @@ export default class App extends Component {
       <ErrorBoundry>
           <SwapiServiceProvider value={this.swapiService}>
             <div className="stardb-app">
-            <Header />
+                <Header />
 
-            <PersonDetails itemId={11} />
-            <PlanetDetails itemId={5} />
-            <StarshipDetails itemId={9} />
+                <PersonDetails itemId={11} />
+                <PlanetDetails itemId={5} />
+                <StarshipDetails itemId={9} />
 
-            <PersonList />
-            <StarshipList />
-            <PlanetList />
+                <PersonList />
+                <StarshipList />
+                <PlanetList />
             </div>
           </SwapiServiceProvider>
 

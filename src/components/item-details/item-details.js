@@ -44,7 +44,7 @@ export default class ItemDetails extends Component {
     }
     getData(itemId)
       .then((item) => {
-          console.log(getImageUrl(item))
+
         this.setState({
             item,
             image: getImageUrl(item)
@@ -59,8 +59,7 @@ export default class ItemDetails extends Component {
       return <span>Select a item from a list</span>;
     }
 
-    const { id, name, gender,
-              birthYear, eyeColor } = item;
+    const { name } = item;
 
     return (
       <div className="person-details card">
