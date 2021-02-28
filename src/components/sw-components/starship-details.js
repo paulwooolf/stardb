@@ -1,8 +1,7 @@
-import {SwapiServiceConsumer} from "../swapi-service-context";
 import ItemDetails from "../item-details";
 import {Record} from "../item-details/item-details";
 import React from "react";
-import { withSwapiService } from '../hoc-helpers'
+import {withSwapiService} from '../hoc-helpers'
 
 const StarshipDetails = (props) => {
 
