@@ -1,35 +1,33 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 import Header from '../header';
 import RandomPlanet from '../random-planet';
-import ErrorButton from '../error-button';
-import PeoplePage from '../people-page';
 import ErrorBoundry from "../error-boundry";
 
 import './app.css';
 import ItemDetails from "../item-details";
-import Row from "../row";
 import SwapiService from "../../services/swapi-service";
 import {Record} from "../item-details/item-details";
-import ItemList from "../item-list";
 import {SwapiServiceProvider} from "../swapi-service-context";
 
-import {
-    PersonDetails,
-    PlanetDetails,
-    StarshipDetails,
-    PersonList,
-    PlanetList,
-    StarshipList
-} from "../sw-components";
+import {PersonDetails, PersonList, PlanetDetails, PlanetList, StarshipDetails, StarshipList} from "../sw-components";
+import DummySwapiService from "../../services/dummy-swapi-service";
 
 export default class App extends Component {
 
-    swapiService = new SwapiService();
-
   state = {
-    showRandomPlanet: true
+      showRandomPlanet: true,
+      swapiService: new SwapiService()
   };
+
+  onServiceChange = () => {
+      this.setState(({ swapiService }) => {
+          const Service = swapiService instanceof SwapiService ? DummySwapiService : SwapiService;
+          return {
+              swapiService: new Service()
+          }
+      })
+  }
 
   toggleRandomPlanet = () => {
     this.setState((state) => {
@@ -46,12 +44,10 @@ export default class App extends Component {
       null;
 
     const {getPerson,
-        getAllPeople,
-        getAllPlanets,
         getStarship,
         getStarshipImage,
         getPersonImage,
-    } = this.swapiService;
+    } = this.state.swapiService;
 
     const personDetails = (
         <ItemDetails
@@ -76,9 +72,9 @@ export default class App extends Component {
 
     return (
       <ErrorBoundry>
-          <SwapiServiceProvider value={this.swapiService}>
+          <SwapiServiceProvider value={this.state.swapiService}>
             <div className="stardb-app">
-                <Header />
+                <Header onServiceChange={this.onServiceChange} />
 
                 <PersonDetails itemId={11} />
                 <PlanetDetails itemId={5} />

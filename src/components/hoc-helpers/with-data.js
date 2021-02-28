@@ -8,8 +8,17 @@ const withData = (View) => {
             data: null
         };
 
-        componentDidMount() {
+        componentDidUpdate(prevProps, prevState, snapshot) {
+            if (this.props.getData !== prevProps.getData) {
+                this.update();
+            }
+        }
 
+        componentDidMount() {
+            this.update();
+        }
+
+        update() {
             this.props.getData()
                 .then((data) => {
                     this.setState({
@@ -19,13 +28,10 @@ const withData = (View) => {
         }
 
         render() {
-
             const { data } = this.state;
-
             if (!data) {
                 return <Spinner />;
             }
-
             return <View { ...this.props } data={data} />
         }
     };
