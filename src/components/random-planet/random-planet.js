@@ -5,6 +5,7 @@ import ErrorIndicator from '../error-indicator';
 import SwapiService from '../../services/swapi-service';
 
 import './random-planet.css';
+import PropTypes from "prop-types";
 
 export default class RandomPlanet extends Component {
 
@@ -13,13 +14,7 @@ export default class RandomPlanet extends Component {
     }
 
     static propTypes = {
-        updateInterval: (props, propName, componentName) => {
-            const value = props[propName];
-            if (typeof value === 'number' && !isNaN(value)) {
-                return null;
-            }
-            return new TypeError(`${componentName}: ${propName} must be number`);
-        }
+        updateInterval: PropTypes.number
     }
 
   swapiService = new SwapiService();
